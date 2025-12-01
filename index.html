@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>Xingdi Wang</title>
+  <style>
+  body {
+    margin: 0;
+    font-family: serif;
+  }
+
+  /* Header */
+  header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* 左右两端分布 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 95%;                      /* 让 header 填满整个宽度 */
+  padding: 20px;
+  z-index: 20000;
+  background-color: transparent;
+  mix-blend-mode: difference;
+  color: rgb(139, 139, 139);
+  }
+
+  /* Name */
+  .name {
+    font-size: 28px;
+    font-weight: normal;
+    position: relative;
+    mix-blend-mode: difference; /* negative blend */
+    font-size: clamp(20px, 4vw, 20px);
+  }
+
+  /* Bio text */
+  .textBio {
+    font-size: 10px;  
+    position: fixed;
+    top: 70%;
+    left: 20%;
+    right: 20%;
+    color: rgb(255, 255, 255);
+    mix-blend-mode: difference;
+    font-family: serif;
+  }
+
+  /* ====== Menu Button ====== */
+    #menuBtn {
+    top: 20px;
+    left: 20px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 20000;
+    color: #5c5c5c;
+    mix-blend-mode: difference;
+    }
+
+    /* ====== Side Menu ====== */
+    #sideMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;               /* 默认收起 */
+    height: 100%;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.12);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 100px;
+    z-index: 20001;
+    mix-blend-mode: difference;
+    }
+
+    #sideMenu a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #727272;
+    mix-blend-mode: difference;
+    }
+
+    #sideMenu a:hover {
+    color: #a83030;
+    }
+    
+    /*遮罩层，用于Menu开关*/
+    #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(87, 87, 87, 0.057);  /* 半透明阴影，可调 */
+    display: none;                /* 默认不显示 */
+    z-index: 15000;               /* 要比 sideMenu 低，但高于页面 */
+    }
+
+
+
+    /*Carousel*/
+    .carousel-wrapper {
+    position: relative;
+    width: 80%; /* custom adjustable width */
+    max-width: 1200px; /* prevents too large size */
+    margin: 200px auto 00 auto; /* ALWAYS centered */
+    aspect-ratio: 16 / 9; /* keeps ratio on any resize */
+    overflow: hidden;
+    }
+
+
+    .carousel {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    }
+
+
+    .carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+    }
+
+
+    .carousel img.active {
+    opacity: 1;
+    }
+
+    /* Page content spacing */
+    main {
+    padding: 100px 200px;
+    }
+
+
+    /*Main header Font*/
+    main {
+    color: #000000;           
+    font-size: 18px;       
+    align-items: center;
+    line-height: 1;       /* 行距 */
+    font-family: serif; 
+    }
+
+    
+    /* Text overlay */
+    .main-text {
+    top: 10%; 
+    left: 50%;
+    font-size: 80px;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    mix-blend-mode: difference;   /* ← 负片效果 */
+    mix-blend-mode: difference; /* negative blend */
+    }
+
+    .main-text2 {
+    font-size: 70px;
+    position: absolute;
+    top: 10%; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 110;
+    text-align: center;
+    letter-spacing: 3px;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    mix-blend-mode: difference;   /* ← 负片效果 */
+    font-family: serif;
+    }
+
+
+    .info {
+    top: 10%; 
+    left: 50%;
+    font-size: 80px;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    mix-blend-mode: difference;   /* ← 负片效果 */
+    mix-blend-mode: difference; /* negative blend */
+    }
+
+
+    /* Gradient overlay */
+    .carousel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.4) 0%,
+    rgba(0,0,0,0.2) 40%,
+    rgba(0,0,0,0.4) 80%
+    );
+    pointer-events: none;
+    }
+
+    
+    /* =============================
+    MOBILE RESPONSIVE FIX (必加)
+    ============================= */
+  @media (max-width: 768px) {
+
+    /* 让 body 不会左右溢出 */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Header 调整为更小、更紧凑 */
+    header {
+      padding: 10px;
+    }
+
+    .name {
+      font-size: 16px;
+    }
+
+    /* Side Menu 撑满屏幕，不再固定宽度 */
+    #sideMenu {
+      
+      max-width: 68%;
+      background-color: rgb(255, 255, 255);
+    }
+    /*
+    #sideMenu a {
+      font-size: 16px;
+      margin: 15px 20px;
+    } */
+
+    /* BIO 文本往下移，字变大一点 */
+    .textBio {
+      top: 55%;
+      left: 5%;
+      right: 35%;
+      font-size: 5px;
+      line-height: 1.4;
+    }
+
+    /* 轮播区下降，避免头部遮挡 */
+    .carousel-wrapper {
+      width: 100%;
+      margin-top: 120px;
+    }
+
+    /* main 区域边距调小，手机不会挤 */
+    main {
+      padding: 20px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    /* 标题文本缩小一点 */
+    .main-text {
+      font-size: 32px !important;
+      top: 15%;
+    }
+
+    .main-text2 {
+      font-size: 36px !important;
+      top: 20%;
+    }
+
+    /* 联系方式字体缩小 */
+    .main-text h1 span,
+    .main-text a {
+      font-size: 22px !important;
+    }
+
+    
+  }
+
+        
+  </style>
+</head>
+
+
+<div id="overlay"></div>
+
+<body>
+
+  <header>
+      <span id="menuBtn">☰</span>
+      <div class="name">Xingdi Wang ✵ 王星迪</div>
+  </header>
+
+  <div class="textBio">
+        <h1>
+      　　°Wang Xingdi (2000) graduated from the Electronic
+      Musical Instrument Engineering program at Xinghai
+      Conservatory of Music and is currently enrolled in the
+      Electronic Music Department at the Giuseppe Verdi
+      Conservatory of Music in Milan.
+      <br><br>
+      Her creative pursuits encompass a variety of genres,
+      including sound interactive installations, synthesizer
+      software design, acousmatic music, and 3D visual projects.
+      <br><br>
+      Her achievements include winning the Bronze Award
+      in the International Electronic Music Interactive
+      Media category at the Danny Awards, as well as an
+      Excellence Award in Applied Music, third prize in
+      the NCDA Future Designers Competition for Digital
+      Music in Guangdong province and received an
+      Outstanding Work Award at the National Conference
+      on Sound and Music Technology (CMST).
+  
+  </div>
+
+  <!-- Side Menu -->
+  <div id="sideMenu">
+      <a href="music.html"> ✯ Music</a>
+      <a href="installation.html"> ✫ Installation</a>
+      <a href="synthesizers.html"> ⍟ Plugin</a>
+      <a href="visual.html"> ✽ Visual Design</a>
+      <a href="photo.html"> ✰ Photography</a>
+      
+  </div>
+
+
+  <main>
+
+    <div class="carousel-wrapper"></div>
+      <div class="carousel">
+
+        <img src="images/homepage1.jpg" class="active">
+        <img src="images/homepage2.jpg">
+        <img src="images/homepage3.jpg">
+        <img src="images/homepage4.jpg">
+
+    
+        <div class="main-text">
+            <h1>
+            <i>
+            　★ ° . *　✩　　°　.　°☆ 　. * ● ¸.★ 　° :. ★　 * • ○ ° ★.　 * 　.　 .° 
+            　. ● . ★ ° . *　☆　. * ● ¸ . 　★ 　° :●. 　 *• ○ ° ★　 .　 * 　.　 
+            .　 ° .　°☆ . * ● ¸ .★ °　.　°☆ 　. * ● ¸.★ 　° :. 　 * • ○ ° ★.　 * 　.　 　★     ° :.☆
+            <br>
+            <span style="color: #ffffff; font-size: 100px; text-decoration: none;">xingdiwangxd@gmail.com</a>
+            <br>
+            <a href="https://www.instagram.com/wngxgd00s12z20o?igsh=MW1vcTloMWhycW1xdg%3D%3D&utm_source=qr" target=_blank 
+            style="color: #ffffff; font-size: 50px; text-decoration: none;">Instagram/</a>
+            <a href="https://xhslink.com/m/8l10sEMKPNQ" target=_blank 
+            style="color: #ffffff; font-size: 50px; text-decoration: none;">/Xiaohongshu(Rednote)</a>
+            <br>
+            <br>
+            </i>
+            </h1>
+        </div>
+        
+        <div class="main-text2">
+            <h1>
+                XINGDI WANG
+            </h1>
+        </div>
+
+      </div>
+      
+    </div>
+  </main>
+
+
+
+<script>
+    /* ===== Side Menu ===== */
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');
+
+    /* 打开菜单 */
+    menuBtn.onclick = function () {
+        sideMenu.style.width = '280px';
+        overlay.style.display = 'block';
+    };
+
+    /* 点击背景关闭菜单 */
+    overlay.onclick = function () {
+        sideMenu.style.width = '0';
+        overlay.style.display = 'none';
+    };
+
+
+
+    /*carousel*/
+    let index = 0;
+    const images = document.querySelectorAll('.carousel img');
+
+        setInterval(() => {
+    images[index].classList.remove('active');
+    index = (index + 1) % images.length;
+    images[index].classList.add('active');
+                        }, 4000);
+
+</script>
+
+</body>
+</html>
