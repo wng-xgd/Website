@@ -1,29 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <title>Xingdi Wang - Installation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Installation ✵ Xingdi Wang</title>
 
-    <style>
-        .not{
-            color: black;
-            font-size: 80px;
-            justify-content: center;
-        }
-    </style>
+<style>
 
+/* ===== Menu Button ===== */
+#menuBtn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 20000;
+  color: #ffffff;
+}
+
+/* ===== Side Menu ===== */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  max-width: 200px;
+  background: rgba(0,0,0,0.85);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 20001;
+}
+
+#sideMenu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #dddddd;
+  text-decoration: none;
+}
+
+#sideMenu a:hover {
+  color: #ffffff;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.25);
+  display: none;
+  z-index: 15000;
+}
+
+/* ===== Page Layout ===== */
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: #000000;
+  color: #f5f5f5;
+  font-family: serif;
+}
+
+.page-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 32px;
+  text-align: center;
+  margin: 15px 0 60px 0;
+  letter-spacing: 0em;
+}
+
+/* ===== Installation Project ===== */
+.installation {
+  margin-bottom: 60px;
+}
+
+/* -------- Carousel -------- */
+.carousel {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 16px auto;
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border: 1px solid #444;
+}
+
+.carousel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.carousel img.active {
+  opacity: 1;
+}
+
+/* -------- Text Section -------- */
+.installation-title {
+  font-size: 24px;
+  margin-left: 40px;
+  margin-bottom: 8px;
+}
+
+.desc-01 {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-left: 40px;
+  margin-bottom: 12px;
+}
+
+.installation-link a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 40px;
+  border-bottom: 1px solid #666;
+}
+
+.installation-link a:hover {
+  border-bottom-color: #ffffff;
+}
+
+.desc-02 {
+  font-size: 15px;
+  margin-left: 40px;
+  font-style: italic;
+  color: #bbbbbb;
+}
+
+/* =============================
+   MOBILE RESPONSIVE (≤768px)
+   ============================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 16px 10px;
+    overflow-x: hidden;
+  }
+
+  /* Page title */
+  .page-title {
+    font-size: 20px;
+    margin-top: 20px;
+    margin: 15px 0px 18px 20px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+
+  /* Side menu 全宽打开 */
+  #sideMenu {
+    max-width: 70%;
+    padding-top: 80px;
+  }
+
+  #sideMenu a {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+
+  /* Carousel 适应手机宽度 */
+  .carousel {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16/12;  /* 更适合手机的比例 */
+    margin-bottom: 12px;
+  }
+
+  /* Installation title */
+  .installation-title {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Paragraph text */
+  .desc-01 {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+  }
+
+  .installation-link a {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
+  /* "Under development" text */
+  .desc-02 {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-style: italic;
+  }
+
+  /* Installation section spacing */
+  .installation {
+    margin-bottom: 40px;
+  }
+}
+
+</style>
 </head>
 
 <body>
-    <header>
-        <div class="not">preparing..</div>
 
-        <!---
-        <div class="detail">
-            <a href="mutantidra.html">MUTANT IDRA</a>
-        </div>-->
-        
-    </header>
+<!-- Menu Button -->
+<span id="menuBtn">☰</span>
+
+<!-- Overlay -->
+<div id="overlay"></div>
+
+<!-- Side Menu -->
+<div id="sideMenu">
+  <span id="closeBtn">×</span>
+  <a href="index.html">← Home</a>
+  <a href="music.html">✯ Music</a>
+  <a href="installation.html">✫ Installation</a>
+  <a href="synthesizers.html">⍟ Plugin</a>
+  <a href="visual.html">✽ Visual</a>
+  <a href="photo.html">✰ Photography</a>
+
+</div>
+
+<div class="page-wrapper">
+
+  <div class="page-title">INSTALLATION ✵ XINGDI WANG</div>
+
+  <!-- =======================================================
+       INSTALLATION 01 — with carousel, intro, link
+       ======================================================= -->
+  <div class="installation">
+        <div class="installation-title">MUTANT IDRA</div>
+
+        <!-- Photo carousel -->
+        <div class="carousel">
+        <img src="images/MI_1.png" class="active">
+        <img src="images/MI_4.JPG">
+        <img src="images/MI_3.png">
+        </div>
+
+        <div class="desc-01">
+        ❍ MUTANT IDRA "INITIAL@MODEL, Multimedia Interactive System, 2022 
+        <br>interactive audiovisual installation based on light-controlled performance.
+        Light sensors receive optical signals and convert them into MIDI messages to trigger sound.
+        The captured sound parameters are then used to generate and transform the visual images on screen.
+        <br><br>With this self-designed light controller, the performer plays music through light, producing 
+        fragmented notes and “broken” timbres that escape the fixed and programmed structure of traditional musical works.
+        <br>The timbres created by the custom-built synthesizer function like the “blood” of the visual part of the 
+        installation—sometimes flowing quietly like a small stream, sometimes crashing violently like water hitting rocks, 
+        suddenly turning wild, intense, and eruptive.
+        </div>
+
+        <div class="installation-link">
+        <a href="mutantidra.html" rel="noopener noreferrer">
+            → View full project page
+        </a>
+        </div>
+  </div>
+
+  <!-- =======================================================
+       INSTALLATION 02 — Under development
+       ======================================================= -->
+  <div class="installation">
+    <div class="installation-title">Project 2025</div>
+    <div class="desc-02">
+    This work is currently under development and will be published soon.
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ===== Menu Script ===== */
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sideMenu = document.getElementById('sideMenu');
+const overlay = document.getElementById('overlay');
+
+menuBtn.onclick = function () {
+  const currentWidth = window.getComputedStyle(sideMenu).width;
+
+  if (currentWidth === '200px') {
+    sideMenu.style.width = '0';
+    overlay.style.display = 'none';
+  } else {
+    sideMenu.style.width = '200px';
+    overlay.style.display = 'block';
+  }
+};
+
+closeBtn.onclick =
+overlay.onclick = function () {
+  sideMenu.style.width = '0';
+  overlay.style.display = 'none';
+};
+
+/* ===== Carousel Script (all carousels auto-rotate) ===== */
+const carousels = document.querySelectorAll('.carousel');
+
+carousels.forEach(carousel => {
+  const images = carousel.querySelectorAll('img');
+  let index = 0;
+
+  setInterval(() => {
+    images[index].classList.remove('active');
+    index = (index + 1) % images.length;
+    images[index].classList.add('active');
+  }, 3000);
+});
+</script>
+
 </body>
+</html>

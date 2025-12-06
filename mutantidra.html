@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUTANT IDRA</title>
+
+<style>
+/* ===== Menu Button ===== */
+#menuBtn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 20000;
+  color: #000;
+}
+
+/* ===== Side Menu ===== */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  max-width: 200px;
+  background: rgba(0,0,0,0.85);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 20001;
+}
+
+#sideMenu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #ddd;
+  text-decoration: none;
+}
+
+#sideMenu a:hover { color: #fff; }
+
+#closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.25);
+  display: none;
+  z-index: 15000;
+}
+
+/* ====== Page Layout ====== */
+body {
+  margin: 0;
+  padding: 50px 50px;
+  background: #ffffff;
+  color: #000000;
+  font-family: serif;
+}
+
+.page-title {
+  font-size: 34px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 60px;
+}
+
+/* ===== Content Layout ===== */
+body {
+  margin: 0;
+  padding: 40px 20px;
+  font-family: serif;
+  background: #fff;
+  color: #000;
+}
+
+.wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.media {
+  width: 100%;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.describe {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 18px;
+  text-align: right;
+}
+
+.text {
+  font-size: 18px;
+  line-height: 1.3;
+  margin-bottom: 50px;
+  text-align: center;
+  width: 100%;   
+  max-width: 100%; 
+}
+
+.text_c{
+  margin-top: 160px;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+
+  .page-title {
+    font-size: 20px;
+    margin-top: 10px;
+    letter-spacing: 0em;
+    justify-content: center;
+  }
+
+  #menuBtn {
+    font-size: 28px;
+    top: 18px;
+    left: 18px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+
+  .text_c{font-size: 8px;}
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- ================= MENU ================= -->
+<span id="menuBtn">☰</span>
+<div id="overlay"></div>
+<!-- ===== Title ===== -->
+<div class="page-title">MUTANT IDRA</div>
+
+<div id="sideMenu">
+  <span id="closeBtn">×</span>
+  <a href="index.html">← Home</a>
+  <a href="music.html">✯ Music</a>
+  <a href="installation.html">✫ Installation</a>
+  <a href="synthesizers.html">⍟ Plugin</a>
+  <a href="visual.html">✽ Visual</a>
+  <a href="photo.html">✰ Photography</a>
+</div>
+
+
+
+
+<!-- ================= CONTENT ================= -->
+
+<div class="wrapper">
+
+  <img src="images/MI_5.PNG" class="media" alt="image">
+  <div class="describe">Initial Concept Sketch</div>
+  <div class="text">
+    MUTANT IDRA is an audiovisual interactive installation based on a light-controlled system.<br>
+    Light-sensitive components receive optical signals and convert them into MIDI messages 
+    that trigger sound. The captured sound parameters then activate and transform the visual imagery of the work.
+  </div>
+
+  <img src="images/MI_6.PNG" class="media" alt="image">
+  <img src="images/MI_7.PNG" class="media" alt="image">
+  <div class="describe">Derived Design Sketches</div>
+  
+  <div class="text">
+    The central theme of MUTANT IDRA is tearing and regeneration.<br>
+    The hydra, a multicellular cnidarian with eight to ten slender tentacles, 
+    becomes the biological starting point of this work.<br>
+    Its network-like neural structure resembles the shape of a human hand.
+    By abstracting the forms of hydra and blood, the installation explores 
+    ideas of unity and independence, separation and reformation, 
+    and the possibility of breaking conventional systems through continual regeneration.
+  </div>
+
+  <img src="images/MI_8.PNG" class="media" alt="image">
+  <img src="images/MI_9.PNG" class="media" alt="image">
+  <div class="describe">Chip and Circuit Design with Light-Sensitive Components</div>
+
+  <div class="text">
+    On a personal level, this work reflects my own process of introspection.<br>
+    Human emotions are complex and cannot be described with simple words.<br>
+    A passionate person may become silent in certain environments, 
+    a decisive person may hesitate, and someone filled with sadness may still find strength.<br>
+    For me, music is a place where I can let go of external judgments.<br>
+    Creating this piece became a way to step outside fixed patterns of thought.
+  </div>
+
+  <img src="images/MI_10.PNG" class="media" alt="image">
+  <img src="images/MI_11.PNG" class="media" alt="image">
+  <div class="describe">Lighting Design</div>
+
+  <div class="text">
+    Red is an element that I have never abandoned in my previous works.<br>
+    It exists in blood and symbolizes circulation, vitality, and emotional intensity.<br>
+    In this installation, red appears in the visuals, in the controlled light sources, 
+    and within the musical atmosphere.<br>
+    It may flow gently, intertwine and shift, or burst out with force.
+  </div>
+
+  <img src="images/MI_12.PNG" class="media" alt="image">
+  <img src="images/MI_13.PNG" class="media" alt="image">
+  <!--<img src="images/MI_16.PNG" class="media" alt="image">-->
+  <div class="describe">Chip and Circuit Design</div>
+
+  <div class="text">
+    The concept of Reverse Generation plays an important role in this project.<br>
+    It refers to a creative method in which an already-generated element 
+    becomes the condition for generating change in another medium.<br>
+    For example, the frequency of synthesized sound may create visual imagery.<br>
+    Drawn lines may determine the coordinates of light.<br>
+    Programmed lighting may trigger musical pitch.<br>
+    This process suggests that artistic materials have no fixed origin or ending.<br>
+    They can be used and transformed repeatedly until a circular system is formed.
+  </div>
+
+  <img src="images/MI_14.PNG" class="media" alt="image">
+  <img src="images/MI_17.PNG" class="media" alt="image">
+  <div class="describe">Wearable Model Design</div>
+
+  <div class="text">
+    Reverse Generation introduces new perspectives and dynamics for creators.<br>
+    New media art, with its flexibility and innovative spirit, 
+    provides a foundation for re-shaping artistic expression.
+    Digital and reproduction technologies allow artistic forms to evolve and transform.<br>
+    This method not only creates reverse logic between media but also offers inspiration 
+    for artistic practice and technological development.
+  </div>
+
+  <div class="text">
+    The light-controlled multimedia system integrates both hearing and vision, 
+    making it suitable for exhibitions and live performances.<br>
+    Through an experimental performance approach, light, music, 
+    and visual imagery become inseparable.<br>
+    The use of light-sensitive technology breaks traditional performance structures 
+    and introduces freshness and aesthetic tension into the visual presentation.
+  </div>
+
+  <img src="images/MI_15.PNG" class="media" alt="image">
+  <div class="describe">Visual Interaction Design</div>
+
+  <div class="text">
+    Experiments with this system reveal the strong potential for 
+    reshaping relationships between media.<br>
+    Reverse Generation opens a broad imaginative space for new media art.<br>
+    Through this system, one can witness how artistic media merge and 
+    transform with the help of technology.
+  </div>
+  
+
+  <img src="images/MI_18.PNG" class="media" alt="image">
+  <div class="text">
+    In exploring collaborations across new media, many creative methods become possible 
+    through technological development.<br>
+    The inspiration for this system also began with the idea of Reverse Generation.<br>
+    The natural human impulse to dance to music is reversed as movement becomes the generator of sound.<br>
+    Within the system, the performer’s gestures trigger both sound and visuals.<br>
+    This mode of activation makes interdisciplinary collaboration with dance possible, 
+    forming an interactive work that combines music, movement, and imagery.
+  </div>
+
+  <img src="images/MI_19.PNG" class="media" alt="image">
+
+  <div class="text">
+    The system brings together sound, two-dimensional visual imagery, and three-dimensional lighting.<br>
+    Light design transforms visual information from two dimensions into three.<br>
+    The relationship between light, visuals, and music is tightly interconnected, creating a strong sense of presence.<br>
+    Art is a process in which perception moves from the heart to the eyes and back to the heart.<br>
+    Through sensory symbols, the work creates emotional resonance for the audience.
+  </div>
+
+  <img src="images/MI_20.PNG" class="media" alt="image">
+  <div class="text">
+    Throughout the development of this system, music production, 
+    MIDI controller design, sound synthesis, three-dimensional modeling, 
+    visual design, wearable object design, circuit design, 
+    and programming all play important roles.<br>
+    Cross-media interaction is one of the most significant 
+    approaches in contemporary electronic music.<br>
+    By combining interactive art and electronic sound, 
+    the system offers a new form of artistic expression 
+    that aligns with the needs of our time.      
+  </div>
+
+  <img src="images/MI_21.jpg" class="media" alt="image">
+  <div class="text">
+    The integration of art and technology opens a pathway for interdisciplinary collaboration.<br>
+    Art needs technology, and technology advances through artistic ideas.<br>
+    Experimental art is not only about creating new works but also about exploring the unknown.<br>
+    When traditional artistic forms reach saturation, 
+    experimental art breaks through habitual ways of seeing 
+    and becomes a catalyst for the evolution of the art field.
+  </div>
+
+
+
+
+  <video class="media" controls muted>
+  <source src="images/MUTANT IDRA FINAl.mp4" type="video/mp4">
+  </video>
+  <div class="describe">Demonstration of the interactive performance system in action</div>
+</div>
+
+<!--Acknowledgments-->
+
+<div class="text_c"> 
+    WITH GRATITUDE TO:<br>
+    Design Supervisor: Professor Wu Zhou<br>
+    Chip Technology Support: Xiao Ou, Jerry, Professor Zhang (MIDI Plus)<br>
+    Choreography: Professor Yan Ming<br>
+    Dance Performance: Hou Liang (Dance department, Xinghai Conservatory of Music)<br>
+    Talent: Jako, Hou Liang<br>
+    Venue Provided by: Araki Shooting Base (42 Club), Xiling Fancheng Recording Studio<br>
+    Videographer: Shen Li (Guangzhou Academy of Fine Arts)<br>
+    Sound Consultation: Wenjing (Sound Republic Live House)<br>
+    Lighting Consultation: Cong (Sound Republic Live House)
+</div>
+
+
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sideMenu = document.getElementById('sideMenu');
+const overlay = document.getElementById('overlay');
+
+menuBtn.onclick = function () {
+  const currentWidth = window.getComputedStyle(sideMenu).width;
+  if (currentWidth === '200px') {
+    sideMenu.style.width = '0';
+    overlay.style.display = 'none';
+  } else {
+    sideMenu.style.width = '200px';
+    overlay.style.display = 'block';
+  }
+};
+
+closeBtn.onclick = overlay.onclick = function () {
+  sideMenu.style.width = '0';
+  overlay.style.display = 'none';
+};
+</script>
+
+</body>
+</html>
