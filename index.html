@@ -6,29 +6,35 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <title>Xingdi Wang</title>
   <style>
-    body {
-      margin: 0;
-      font-family: serif;
+
+    @font-face {
+      font-family: 'Auristela';
+      src: url('fonts/Auristela_FREE.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
     /* ======  Header ====== */
     header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;   /* 左右两端分布 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 95%;                      /* 让 header 填满整个宽度 */
-    padding: 20px;
-    z-index: 20000;
-    background-color: transparent;
-    mix-blend-mode: difference;
-    color: rgb(139, 139, 139);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;   /* 左右两端分布 */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 95%;                      /* 让 header 填满整个宽度 */
+      padding: 20px;
+      z-index: 20000;
+      background-color: transparent;
+      mix-blend-mode: difference;
+      color: rgb(139, 139, 139);
+      font-family: 'Auristela', serif;
     }
 
     /* ====== Name ====== */
     .name {
+      font-family: 'Auristela', serif;      
       font-size: 28px;
       font-weight: normal;
       position: relative;
@@ -45,7 +51,7 @@
       right: 20%;
       color: rgb(255, 255, 255);
       mix-blend-mode: difference;
-      font-family: serif;
+      font-family: 'Auristela', serif;
     }
 
     /* ====== Menu Button ====== */
@@ -78,6 +84,7 @@
       #sideMenu a {
       display: block;
       padding: 10px 20px;
+      font-family: 'Auristela', serif;
       font-size: 20px;
       text-decoration: none;
       color: #727272;
@@ -130,8 +137,7 @@
       color: #000000;           
       font-size: 18px;       
       align-items: center;
-      line-height: 1;       /* 行距 */
-      font-family: serif; 
+      line-height: 1;       /* 行距 */ 
       padding: 100px 200px;  /* Page content spacing */
       }
 
@@ -151,7 +157,7 @@
       }
 
       .main-text2 {
-      font-size: 70px;
+      font-size: 90px;
       position: absolute;
       top: 10%; 
       left: 50%;
@@ -162,7 +168,7 @@
       color: white;
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
       mix-blend-mode: difference;   /* ← 负片效果 */
-      font-family: serif;
+      font-family: 'Auristela', serif;
       }
 
 
@@ -179,6 +185,7 @@
       align-items: center;
       mix-blend-mode: difference; /* negative blend */    
       z-index: 5000;
+      font-family: 'Auristela', serif;
     }
 
     /* Links inside footer */
